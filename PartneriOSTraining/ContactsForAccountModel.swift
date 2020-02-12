@@ -49,7 +49,8 @@ struct ContactResponse: Decodable {
 
 class ContactsForAccountModel: ObservableObject {
     @Published var contacts: [Contact] = []
-    
+  var contactsForCancellable: AnyCancellable?
+  
     var account: Account?
     
     func fetchContactsForAccount(){
@@ -57,7 +58,8 @@ class ContactsForAccountModel: ObservableObject {
         
         let request = RestClient.shared.request(forQuery: "SELECT id, firstName, lastName, phone, email, mailingStreet, mailingCity, mailingState, mailingPostalCode FROM Contact WHERE AccountID = '\(acct.id)'", apiVersion: nil)
         
-        _ = RestClient.shared.publisher(for: request)
+        contactsForCancellable = RestClient.shared.publisher(for: request)
+          .print()
             .receive(on: RunLoop.main)
             .tryMap({ (response) -> Data in
                 response.asData()

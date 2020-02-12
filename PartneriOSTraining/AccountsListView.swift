@@ -29,7 +29,11 @@ import Combine
 import SalesforceSDKCore
 
 struct AccountsListView: View {
-  @ObservedObject var viewModel = AccountsListModel()
+  @ObservedObject var viewModel: AccountsListModel
+  
+  init(_ viewModel: AccountsListModel = AccountsListModel()){
+    self.viewModel = viewModel
+  }
   
   var body: some View {
     NavigationView {
@@ -43,7 +47,13 @@ struct AccountsListView: View {
           }
         }
       }
-      .navigationBarTitle(Text("Accounts"), displayMode: .inline)
+      .navigationBarTitle(Text("My Accounts"), displayMode: .inline)
+      .navigationBarItems(
+        leading: Button("Logout") {
+          self.viewModel.accounts = []
+          UserAccountManager.shared.logout()
+        }
+      )
     }
     .onAppear{ self.viewModel.fetchAccounts() }
   }
@@ -51,7 +61,12 @@ struct AccountsListView: View {
 
 struct AccountsList_Previews: PreviewProvider {
   static var previews: some View {
-    AccountsListView()
+    let preview = AccountsListView(AccountsListModel(true))
+    preview.viewModel.accounts = Account.generateDemoAccounts(numberOfAccounts: 15)
+    return Group {
+      preview.environment(\.colorScheme, .dark)
+      preview.environment(\.colorScheme, .light)
+    }
   }
 }
 

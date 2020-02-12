@@ -4,8 +4,14 @@
       "syncName": "syncDownAccounts",
       "syncType": "syncDown",
       "soupName": "Account",
-      "target": {"type": "soql", "query":"SELECT Id, Name, Industry FROM Account LIMIT 25"},
-      "options": {"fieldlist":["Id", "Name", "Industry", "LastModifiedDate"], "mergeMode":"LEAVE_IF_CHANGED"}
+      "target": {
+        "type": "soql",
+        "query":"SELECT Id, Name, phone, fax, website, type, industry, numberOfEmployees, annualRevenue, description, billingStreet, billingCity, billingState, billingPostalCode, billingCountry, shippingStreet, shippingCity, shippingState, shippingPostalCode, shippingCountry FROM Account"
+      },
+      "options": {
+        "fieldlist":["Id", "Name", "phone", "fax", "website", "type", "industry", "numberOfEmployees", "annualRevenue", "description", "billingStreet", "billingCity", "billingState", "billingPostalCode", "billingCountry", "shippingStreet", "shippingCity", "shippingState", "shippingPostalCode", "shippingCountry"],
+        "mergeMode":"LEAVE_IF_CHANGED"
+      }
     }
   ]
 }

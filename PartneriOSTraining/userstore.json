@@ -5,7 +5,24 @@
       "indexes": [
         { "path": "Id", "type": "string"},
         { "path": "Name", "type": "string"},
+        { "path": "Phone", "type": "string"},
+        { "path": "Fax", "type": "string"},
+        { "path": "Website", "type": "string"},
+        { "path": "Type", "type": "string"},
         { "path": "Industry", "type": "string"},
+        { "path": "NumberOfEmployees", "type": "integer"},
+        { "path": "AnnualRevenue", "type": "floating"},
+        { "path": "Description", "type": "string"},
+        { "path": "BillingStreet", "type": "string"},
+        { "path": "BillingCity", "type": "string"},
+        { "path": "BillingState", "type": "string"},
+        { "path": "BillingPostalCode", "type": "string"},
+        { "path": "BillingCountry", "type": "string"},
+        { "path": "ShippingStreet", "type": "string"},
+        { "path": "ShippingCity", "type": "string"},
+        { "path": "ShippingState", "type": "string"},
+        { "path": "ShippingPostalCode", "type": "string"},
+        { "path": "ShippingCountry", "type": "string"},
         { "path": "__local__", "type": "string"}
       ]
     }
