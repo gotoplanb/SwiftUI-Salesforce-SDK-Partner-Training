@@ -1,0 +1,5 @@
+SELECT Id, Name, phone, fax, website, type, industry, numberOfEmployees, annualRevenue, description, 
+  billingStreet, billingCity, billingState, billingPostalCode, billingCountry,
+  shippingStreet, shippingCity, shippingState, shippingPostalCode, shippingCountry,
+  (SELECT Id, firstName, lastName, email, accountId FROM Contacts) 
+FROM Account
