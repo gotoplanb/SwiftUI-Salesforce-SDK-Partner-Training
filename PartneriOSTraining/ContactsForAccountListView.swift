@@ -34,11 +34,11 @@ struct ContactsForAccountListView: View {
   var account: Account
   
   var body: some View {
-    List(viewModel.contacts) {dataItem in
+    List(self.viewModel.contacts) {dataItem in
       NavigationLink(destination: ContactDetailView(contact: dataItem)){
         HStack{
-          Text(dataItem.FirstName ?? "")
-          Text(dataItem.LastName ?? "")
+          Text(dataItem.FirstName ?? "No First Name")
+          Text(dataItem.LastName ?? "No Last Name")
         }
       }
     }
@@ -48,7 +48,6 @@ struct ContactsForAccountListView: View {
       self.viewModel.fetchContactsForAccount()
     }
   }
-  
 }
 
 struct ContactsForAccountListView_previews: PreviewProvider {

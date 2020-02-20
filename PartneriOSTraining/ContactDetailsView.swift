@@ -49,10 +49,10 @@ struct AddressView: View {
     return HStack(spacing: 10){
       VStack(alignment: .leading, spacing: 3) {
         HStack(spacing: 10) {
-          Text(contact.MailingStreet)
-          Text(contact.MailingCity)
-          Text(contact.MailingState)
-          Text(contact.MailingPostalCode)
+          Text(contact.MailingStreet ?? "")
+          Text(contact.MailingCity ?? "")
+          Text(contact.MailingState ?? "")
+          Text(contact.MailingPostalCode ?? "")
         }
         Text("Address").font(.subheadline).italic()
       }
@@ -61,32 +61,49 @@ struct AddressView: View {
 }
 
 struct ContactDetailView: View {
-  var contact: Contact
+  @State var contact: Contact
   @Environment(\.editMode) var mode
   var body: some View {
-    return List {
-      FieldView(label: "First Name", value: contact.FirstName)
-      FieldView(label: "Last Name", value: contact.LastName)
-      FieldView(label: "Email", value: contact.Email)
-      FieldView(label: "Phone Number", value: contact.PhoneNumber)
-      AddressView(contact: contact)
-      EditButton()
+    VStack(alignment: .center, spacing: 20){
+      if self.mode?.wrappedValue == .inactive {
+        List {
+          FieldView(label: "First Name", value: contact.FirstName)
+          FieldView(label: "Last Name", value: contact.LastName)
+          FieldView(label: "Email", value: contact.Email)
+          FieldView(label: "Phone Number", value: contact.PhoneNumber)
+          AddressView(contact: contact)
+        }
+      } else {
+        ContactEditView(contact: $contact)
+          .onDisappear{
+            print("completed contact edit")
+            let updateCancellable = RestClient.shared.updateContact(self.contact)
+              .receive(on: RunLoop.main)
+              .map { $0 }
+              .assign(to: \.contact, on: self)
+            print(self.contact)
+            
+        }
+      }
     }
+    .navigationBarItems(trailing: EditButton())
   }
 }
 
 struct ContactDetailView_Previews: PreviewProvider {
+  @State static var contact = Contact(
+    Id: "123456",
+    FirstName: "Astro",
+    LastName: "Nomical",
+    PhoneNumber: "9198675309",
+    Email: "Astro.Nomical@gmail.com",
+    MailingStreet: "123 Sessame St",
+    MailingCity: "Sunny Days",
+    MailingState: "NJ",
+    MailingPostalCode: "12345"
+  )
+  
   static var previews: some View {
-    ContactDetailView(contact: Contact(
-      Id: "123456",
-      FirstName: "Astro",
-      LastName: "Nomical",
-      PhoneNumber: "9198675309",
-      Email: "Astro.Nomical@gmail.com",
-      MailingStreet: "123 Sessame St",
-      MailingCity: "Sunny Days",
-      MailingState: "NJ",
-      MailingPostalCode: "12345"
-    ))
+    ContactDetailView(contact: contact)
   }
 }

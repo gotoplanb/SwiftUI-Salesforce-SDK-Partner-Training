@@ -29,20 +29,28 @@ import Combine
 
 struct Contact :  Identifiable, Decodable {
   let id: UUID = UUID()
-  let Id: String
-  var FirstName: String
-  var LastName: String
-  var PhoneNumber: String
-  var Email: String
-  var MailingStreet: String
-  var MailingCity: String
-  var MailingState: String
-  var MailingPostalCode: String
+  let Id: String?
+  var FirstName: String?
+  var LastName: String?
+  var PhoneNumber: String?
+  var Email: String?
+  var MailingStreet: String?
+  var MailingCity: String?
+  var MailingState: String?
+  var MailingPostalCode: String?
   
-  func tupleArray() -> [(key: String, value: String)] {
-    return Mirror(reflecting: self).children.map{ child in
-      return (key: child.label!, value: child.value as! String)
-    }
+  func asDictionary() -> [String:String] {
+    return [
+      "Id": self.Id!,
+      "FirstName": self.FirstName ?? "",
+      "LastName": self.LastName ?? "",
+      "PhoneNubmer": self.PhoneNumber ?? "",
+      "Email": self.Email ?? "",
+      "MailingStreet": self.MailingStreet ?? "",
+      "MailingCity": self.MailingCity ?? "",
+      "MailingState": self.MailingState ?? "",
+      "MailingPostalCode": self.MailingPostalCode ?? ""
+    ]
   }
 }
 
@@ -51,7 +59,6 @@ struct ContactResponse: Decodable {
   var done: Bool
   var records: [Contact]
 }
-
 
 class ContactsForAccountModel: ObservableObject {
   @Published var contacts: [Contact] = []
@@ -74,7 +81,8 @@ class ContactsForAccountModel: ObservableObject {
         record.records
       })
       .catch( { error in
-        Just([])
+        
+        return Just([])
       })
       .assign(to: \.contacts, on:self)
   }

@@ -15,7 +15,6 @@ struct ContactEditRow: View {
   var body: some View {
     HStack{
       Text(key).bold()
-      Divider()
       TextField(key, text: $value)
     }
   }
@@ -23,34 +22,36 @@ struct ContactEditRow: View {
 }
 
 struct ContactEditView: View {
-  @State var contact:Contact
+  @Binding var contact:Contact
 
   var body: some View {
-    VStack{
-      ContactEditRow(key: contact.FirstName, value: $contact.FirstName)
-      ContactEditRow(key: contact.LastName, value: $contact.LastName)
-      ContactEditRow(key: contact.PhoneNumber, value: $contact.PhoneNumber)
-      ContactEditRow(key: contact.Email, value: $contact.Email)
-      ContactEditRow(key: contact.MailingStreet, value: $contact.MailingStreet)
-      ContactEditRow(key: contact.MailingCity, value: $contact.MailingCity)
-      ContactEditRow(key: contact.MailingState, value: $contact.MailingState)
-      ContactEditRow(key: contact.MailingPostalCode, value: $contact.MailingPostalCode)
-    }
+    VStack(alignment: .center, spacing: 20){
+      ContactEditRow(key: "First Name", value: $contact.FirstName.nonOptional)
+      ContactEditRow(key: "Last Name", value: $contact.LastName.nonOptional)
+      ContactEditRow(key: "Phone Number", value: $contact.PhoneNumber.nonOptional)
+      ContactEditRow(key: "Email", value: $contact.Email.nonOptional)
+      ContactEditRow(key: "Mailing Street", value: $contact.MailingStreet.nonOptional)
+      ContactEditRow(key: "Mailing City", value: $contact.MailingCity.nonOptional)
+      ContactEditRow(key: "Mailing State", value: $contact.MailingState.nonOptional)
+      ContactEditRow(key: "Mailing Postal Code", value: $contact.MailingPostalCode.nonOptional)
+      Spacer()
+    }.padding()
   }
 }
 
 struct ContactEditView_Previews: PreviewProvider {
+  @State static var contact = Contact(
+    Id: "123456",
+    FirstName: "Astro",
+    LastName: "Nomical",
+    PhoneNumber: "9198675309",
+    Email: "Astro.Nomical@gmail.com",
+    MailingStreet: "123 Sessame St",
+    MailingCity: "Sunny Days",
+    MailingState: "NJ",
+    MailingPostalCode: "12345"
+  )
   static var previews: some View {
-    ContactEditView(contact: Contact(
-      Id: "123456",
-      FirstName: "Astro",
-      LastName: "Nomical",
-      PhoneNumber: "9198675309",
-      Email: "Astro.Nomical@gmail.com",
-      MailingStreet: "123 Sessame St",
-      MailingCity: "Sunny Days",
-      MailingState: "NJ",
-      MailingPostalCode: "12345"
-    ))
+    ContactEditView(contact: $contact )
   }
 }

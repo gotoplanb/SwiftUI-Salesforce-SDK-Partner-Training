@@ -20,6 +20,8 @@
 		4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C49D1B755242002F9F90 /* InitialViewController.swift */; };
 		78A235BD93AB7D080D67CD51 /* Pods_PartneriOSTraining.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A29C75280BDF73123F14B4 /* Pods_PartneriOSTraining.framework */; };
 		B505BB8823FE3B5000218AD4 /* ContactEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB8723FE3B5000218AD4 /* ContactEditView.swift */; };
+		B505BB8B23FF278000218AD4 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB8A23FF278000218AD4 /* Optional.swift */; };
+		B505BB8D23FF372E00218AD4 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB8C23FF372E00218AD4 /* RestClient.swift */; };
 		B573120223FD80DC006DF5C1 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = B573120123FD80DC006DF5C1 /* Env.swift */; };
 		B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */; };
 		B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73B520C234FA65F001B069B /* SceneDelegate.swift */; };
@@ -46,6 +48,8 @@
 		762732C14CFE40A989C3AD70 /* Pods-PartneriOSTraining.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PartneriOSTraining.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PartneriOSTraining/Pods-PartneriOSTraining.debug.xcconfig"; sourceTree = "<group>"; };
 		82A29C75280BDF73123F14B4 /* Pods_PartneriOSTraining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PartneriOSTraining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B505BB8723FE3B5000218AD4 /* ContactEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactEditView.swift; sourceTree = "<group>"; };
+		B505BB8A23FF278000218AD4 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
+		B505BB8C23FF372E00218AD4 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
 		B573120123FD80DC006DF5C1 /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		B73B520C234FA65F001B069B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 		4FD6C4761B754AF1002F9F90 /* PartneriOSTraining */ = {
 			isa = PBXGroup;
 			children = (
+				B505BB8923FF276B00218AD4 /* Extensions */,
 				4FF12F8A1DCA91F5004D9EF9 /* PartneriOSTraining.entitlements */,
 				4FD6C4A11B755265002F9F90 /* Classes */,
 				4FD6C4771B754AF1002F9F90 /* Supporting Files */,
@@ -147,6 +152,15 @@
 				82A29C75280BDF73123F14B4 /* Pods_PartneriOSTraining.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B505BB8923FF276B00218AD4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B505BB8A23FF278000218AD4 /* Optional.swift */,
+				B505BB8C23FF372E00218AD4 /* RestClient.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		DDFDDF0A29E4BDD114B51BBC /* Pods */ = {
@@ -280,6 +294,7 @@
 				B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */,
 				4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */,
 				4F13E93B237DD5D9005BCAE9 /* ContactDetailsView.swift in Sources */,
+				B505BB8B23FF278000218AD4 /* Optional.swift in Sources */,
 				4F13E947237DD72E005BCAE9 /* AccountsListModel.swift in Sources */,
 				4F13E93C237DD5D9005BCAE9 /* ContactsForAccountModel.swift in Sources */,
 				4F13E93F237DD5D9005BCAE9 /* ContactDetailModel.swift in Sources */,
@@ -288,6 +303,7 @@
 				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,
 				B505BB8823FE3B5000218AD4 /* ContactEditView.swift in Sources */,
 				4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */,
+				B505BB8D23FF372E00218AD4 /* RestClient.swift in Sources */,
 				B573120223FD80DC006DF5C1 /* Env.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
