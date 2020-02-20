@@ -19,6 +19,8 @@
 		4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */; };
 		4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C49D1B755242002F9F90 /* InitialViewController.swift */; };
 		78A235BD93AB7D080D67CD51 /* Pods_PartneriOSTraining.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A29C75280BDF73123F14B4 /* Pods_PartneriOSTraining.framework */; };
+		B505BB8823FE3B5000218AD4 /* ContactEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB8723FE3B5000218AD4 /* ContactEditView.swift */; };
+		B573120223FD80DC006DF5C1 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = B573120123FD80DC006DF5C1 /* Env.swift */; };
 		B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */; };
 		B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73B520C234FA65F001B069B /* SceneDelegate.swift */; };
 		B77BD8A321125B510036B284 /* bootconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B77BD8A221125B510036B284 /* bootconfig.plist */; };
@@ -43,6 +45,8 @@
 		4FF12F8A1DCA91F5004D9EF9 /* PartneriOSTraining.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PartneriOSTraining.entitlements; sourceTree = "<group>"; };
 		762732C14CFE40A989C3AD70 /* Pods-PartneriOSTraining.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PartneriOSTraining.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PartneriOSTraining/Pods-PartneriOSTraining.debug.xcconfig"; sourceTree = "<group>"; };
 		82A29C75280BDF73123F14B4 /* Pods_PartneriOSTraining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PartneriOSTraining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B505BB8723FE3B5000218AD4 /* ContactEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactEditView.swift; sourceTree = "<group>"; };
+		B573120123FD80DC006DF5C1 /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		B73B520C234FA65F001B069B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B77BD8A221125B510036B284 /* bootconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bootconfig.plist; sourceTree = "<group>"; };
@@ -68,6 +72,7 @@
 				4F13E939237DD5D9005BCAE9 /* AccountsListView.swift */,
 				4F13E938237DD5D9005BCAE9 /* ContactsForAccountListView.swift */,
 				4F13E936237DD5D9005BCAE9 /* ContactDetailsView.swift */,
+				B505BB8723FE3B5000218AD4 /* ContactEditView.swift */,
 			);
 			name = SwiftUI;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 				4FD6C49D1B755242002F9F90 /* InitialViewController.swift */,
 				4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */,
 				4F393A281C3C8BCD00B3EA13 /* main.swift */,
+				B573120123FD80DC006DF5C1 /* Env.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -280,7 +286,9 @@
 				4F13E93D237DD5D9005BCAE9 /* ContactsForAccountListView.swift in Sources */,
 				4F13E93E237DD5D9005BCAE9 /* AccountsListView.swift in Sources */,
 				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,
+				B505BB8823FE3B5000218AD4 /* ContactEditView.swift in Sources */,
 				4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */,
+				B573120223FD80DC006DF5C1 /* Env.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

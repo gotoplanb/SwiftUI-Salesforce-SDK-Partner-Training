@@ -30,6 +30,7 @@ import SalesforceSDKCore
 
 struct AccountsListView: View {
   @ObservedObject var viewModel: AccountsListModel
+  @EnvironmentObject var env: Env
   
   init(_ viewModel: AccountsListModel = AccountsListModel()){
     self.viewModel = viewModel
@@ -37,25 +38,34 @@ struct AccountsListView: View {
   
   var body: some View {
     NavigationView {
-      List(viewModel.accounts) { dataItem in
-        NavigationLink(destination: ContactsForAccountListView(account: dataItem)){
-          HStack(spacing: 10) {
-            VStack(alignment: .leading, spacing: 3) {
-              Text(dataItem.name)
-              Text(dataItem.industry).font(.subheadline).italic()
+      VStack{
+        Text(self.env.foo)
+        Button("Update SmartStore") {
+          self.env.updateSoupRecord()
+        }
+        List(viewModel.accounts) { dataItem in
+          NavigationLink(destination: ContactsForAccountListView(account: dataItem)){
+            HStack(spacing: 10) {
+              VStack(alignment: .leading, spacing: 3) {
+                Text(dataItem.name)
+                Text(dataItem.industry).font(.subheadline).italic()
+              }
             }
           }
         }
+        .navigationBarTitle(Text("My Accounts"), displayMode: .inline)
+        .navigationBarItems(
+          leading: Button("Logout") {
+            self.viewModel.accounts = []
+            UserAccountManager.shared.logout()
+          }
+        )
       }
-      .navigationBarTitle(Text("My Accounts"), displayMode: .inline)
-      .navigationBarItems(
-        leading: Button("Logout") {
-          self.viewModel.accounts = []
-          UserAccountManager.shared.logout()
-        }
-      )
     }
-    .onAppear{ self.viewModel.fetchAccounts() }
+    .onAppear{
+      self.viewModel.fetchAccounts()
+      self.env.insertAndQuerySmartStore()
+    }
   }
 }
 
