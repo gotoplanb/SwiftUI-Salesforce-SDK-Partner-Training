@@ -80,7 +80,7 @@ struct ContactDetailView: View {
             let updateCancellable = RestClient.shared.updateContact(self.contact)
               .receive(on: RunLoop.main)
               .map { $0 }
-              .assign(to: \.contact, on: self)
+              //.assign(to: \.contact, on: self)
             print(self.contact)
             
         }
