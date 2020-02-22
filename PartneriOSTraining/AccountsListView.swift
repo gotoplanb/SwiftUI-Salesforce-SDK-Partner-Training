@@ -39,10 +39,21 @@ struct AccountsListView: View {
   var body: some View {
     NavigationView {
       VStack{
-        Text(self.env.foo)
-        Button("Update SmartStore") {
-          self.env.updateSoupRecord()
-        }
+        HStack{
+          VStack{
+            Text(self.env.foo)
+            Button("Update SmartStore") {
+              self.env.updateSoupRecord()
+            }
+          }
+          Spacer()
+          Button("Sequence") {
+            self.env.chainedApiCalls()
+          }
+          Button("DTP") {
+            self.env.dataTaskPublisherDemo()
+          }
+        }.padding()
         List(viewModel.accounts) { dataItem in
           NavigationLink(destination: ContactsForAccountListView(account: dataItem)){
             HStack(spacing: 10) {

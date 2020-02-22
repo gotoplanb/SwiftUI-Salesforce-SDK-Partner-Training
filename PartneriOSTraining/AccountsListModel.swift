@@ -66,17 +66,24 @@ class AccountsListModel: ObservableObject {
   }
   
   func fetchAccounts(){
-    _ = syncManager?.publisher(for: "syncDownAccounts")
+    fetchAccountsCancellable = syncManager?.publisher(for: "syncDownAccounts")
       .receive(on: RunLoop.main)
       .sink(receiveCompletion: { _ in }, receiveValue: { _ in
         self.loadFromSmartStore()
       })
-    
-    self.loadFromSmartStore()
+  }
+  
+  func syncUpAccounts(){
+    fetchAccountsCancellable = syncManager?.publisher(for: "UpSync")
+      .receive(on: RunLoop.main)
+      .print()
+      .sink(receiveCompletion: { _ in }, receiveValue: { r in
+        print(r)
+      })
   }
   
   private func loadFromSmartStore(){
-    fetchAccountsCancellable = self.store?.publisher(for: "select {Account:Name}, {Account:Phone}, {Account:Industry}, {Account:Id} from {Account}")
+    fetchAccountsCancellable = self.store?.publisher(for: "select {AccountSoup:Name}, {AccountSoup:Phone}, {AccountSoup:Industry}, {AccountSoup:Id} from {AccountSoup}")
       .receive(on: RunLoop.main)
       .tryMap{
         $0.map { (row) -> Account in

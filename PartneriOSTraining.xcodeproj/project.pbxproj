@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,13 @@
 		B505BB8823FE3B5000218AD4 /* ContactEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB8723FE3B5000218AD4 /* ContactEditView.swift */; };
 		B505BB8B23FF278000218AD4 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB8A23FF278000218AD4 /* Optional.swift */; };
 		B505BB8D23FF372E00218AD4 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB8C23FF372E00218AD4 /* RestClient.swift */; };
+		B505BB95240034EE00218AD4 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB94240034EE00218AD4 /* UIImage.swift */; };
+		B505BB972400366600218AD4 /* PhotosAndImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB962400366500218AD4 /* PhotosAndImagePickerView.swift */; };
+		B505BB992400614F00218AD4 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB982400614F00218AD4 /* Toast.swift */; };
+		B505BB9B240063AB00218AD4 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB9A240063AB00218AD4 /* View.swift */; };
+		B505BB9E24006DE400218AD4 /* Tatsi in Frameworks */ = {isa = PBXBuildFile; productRef = B505BB9D24006DE400218AD4 /* Tatsi */; };
+		B505BBA12400F48900218AD4 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = B505BBA02400F48900218AD4 /* CodeScanner */; };
+		B507DC2B240100D200DC04E4 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507DC2A240100D200DC04E4 /* MapView.swift */; };
 		B573120223FD80DC006DF5C1 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = B573120123FD80DC006DF5C1 /* Env.swift */; };
 		B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */; };
 		B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73B520C234FA65F001B069B /* SceneDelegate.swift */; };
@@ -50,6 +57,11 @@
 		B505BB8723FE3B5000218AD4 /* ContactEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactEditView.swift; sourceTree = "<group>"; };
 		B505BB8A23FF278000218AD4 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		B505BB8C23FF372E00218AD4 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
+		B505BB94240034EE00218AD4 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		B505BB962400366500218AD4 /* PhotosAndImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosAndImagePickerView.swift; sourceTree = "<group>"; };
+		B505BB982400614F00218AD4 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		B505BB9A240063AB00218AD4 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		B507DC2A240100D200DC04E4 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B573120123FD80DC006DF5C1 /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		B73B520C234FA65F001B069B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,7 +74,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B505BB9E24006DE400218AD4 /* Tatsi in Frameworks */,
 				78A235BD93AB7D080D67CD51 /* Pods_PartneriOSTraining.framework in Frameworks */,
+				B505BBA12400F48900218AD4 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +91,9 @@
 				4F13E938237DD5D9005BCAE9 /* ContactsForAccountListView.swift */,
 				4F13E936237DD5D9005BCAE9 /* ContactDetailsView.swift */,
 				B505BB8723FE3B5000218AD4 /* ContactEditView.swift */,
+				B505BB962400366500218AD4 /* PhotosAndImagePickerView.swift */,
+				B505BB982400614F00218AD4 /* Toast.swift */,
+				B507DC2A240100D200DC04E4 /* MapView.swift */,
 			);
 			name = SwiftUI;
 			sourceTree = "<group>";
@@ -159,6 +176,8 @@
 			children = (
 				B505BB8A23FF278000218AD4 /* Optional.swift */,
 				B505BB8C23FF372E00218AD4 /* RestClient.swift */,
+				B505BB94240034EE00218AD4 /* UIImage.swift */,
+				B505BB9A240063AB00218AD4 /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -190,6 +209,10 @@
 			dependencies = (
 			);
 			name = PartneriOSTraining;
+			packageProductDependencies = (
+				B505BB9D24006DE400218AD4 /* Tatsi */,
+				B505BBA02400F48900218AD4 /* CodeScanner */,
+			);
 			productName = PartneriOSTraining;
 			productReference = 4FD6C4741B754AF1002F9F90 /* PartneriOSTraining.app */;
 			productType = "com.apple.product-type.application";
@@ -224,6 +247,10 @@
 				Base,
 			);
 			mainGroup = 4FD6C46B1B754AF1002F9F90;
+			packageReferences = (
+				B505BB9C24006DE400218AD4 /* XCRemoteSwiftPackageReference "Tatsi" */,
+				B505BB9F2400F48900218AD4 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+			);
 			productRefGroup = 4FD6C4751B754AF1002F9F90 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -293,15 +320,20 @@
 			files = (
 				B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */,
 				4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */,
+				B505BB992400614F00218AD4 /* Toast.swift in Sources */,
 				4F13E93B237DD5D9005BCAE9 /* ContactDetailsView.swift in Sources */,
 				B505BB8B23FF278000218AD4 /* Optional.swift in Sources */,
 				4F13E947237DD72E005BCAE9 /* AccountsListModel.swift in Sources */,
+				B505BB972400366600218AD4 /* PhotosAndImagePickerView.swift in Sources */,
 				4F13E93C237DD5D9005BCAE9 /* ContactsForAccountModel.swift in Sources */,
+				B505BB95240034EE00218AD4 /* UIImage.swift in Sources */,
 				4F13E93F237DD5D9005BCAE9 /* ContactDetailModel.swift in Sources */,
 				4F13E93D237DD5D9005BCAE9 /* ContactsForAccountListView.swift in Sources */,
 				4F13E93E237DD5D9005BCAE9 /* AccountsListView.swift in Sources */,
 				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,
 				B505BB8823FE3B5000218AD4 /* ContactEditView.swift in Sources */,
+				B505BB9B240063AB00218AD4 /* View.swift in Sources */,
+				B507DC2B240100D200DC04E4 /* MapView.swift in Sources */,
 				4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */,
 				B505BB8D23FF372E00218AD4 /* RestClient.swift in Sources */,
 				B573120223FD80DC006DF5C1 /* Env.swift in Sources */,
@@ -480,6 +512,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B505BB9C24006DE400218AD4 /* XCRemoteSwiftPackageReference "Tatsi" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/awkward/Tatsi.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.9;
+			};
+		};
+		B505BB9F2400F48900218AD4 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B505BB9D24006DE400218AD4 /* Tatsi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B505BB9C24006DE400218AD4 /* XCRemoteSwiftPackageReference "Tatsi" */;
+			productName = Tatsi;
+		};
+		B505BBA02400F48900218AD4 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B505BB9F2400F48900218AD4 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4FD6C46C1B754AF1002F9F90 /* Project object */;
 }

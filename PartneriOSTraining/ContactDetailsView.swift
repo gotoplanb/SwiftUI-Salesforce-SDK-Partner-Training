@@ -27,6 +27,8 @@ import Foundation
 import SwiftUI
 import Combine
 import SalesforceSDKCore
+import CodeScanner
+import MapKit
 
 struct FieldView: View {
   var label: String
@@ -61,31 +63,63 @@ struct AddressView: View {
 }
 
 struct ContactDetailView: View {
-  @State var contact: Contact
+  @Binding var contact: Contact
   @Environment(\.editMode) var mode
+  @EnvironmentObject var env: Env
+  @State var updateCancellable: AnyCancellable?
+  @State private var showingImagePicker = false
+  @State private var images = [UIImage]()
+  @State private var attachmentCancellable: AnyCancellable?
+  @State private var showToast: Bool = false
+  @State var mapView: MKMapView = MKMapView()
+
   var body: some View {
     VStack(alignment: .center, spacing: 20){
+      HStack{
+        Button("Add Photo") {
+          self.showingImagePicker = true
+        }.padding()
+      }
+      .sheet(isPresented: $showingImagePicker){
+        PhotosAndImagePickerView(selectedImages: self.$images)
+          .onDisappear{
+            if self.images.count > 0 {
+              let dataArray = self.images.map { img in
+                return img.resizeByQuarter().pngData()!
+              }
+              if let id = self.contact.Id {
+                self.attachmentCancellable = RestClient.shared.attach(files: dataArray, toRecord: id, fileType: ".png")
+                  .receive(on: RunLoop.main)
+                  .sink { value in
+                    self.showToast = true
+                }
+              }
+            }
+        }
+      }
+      MapView(mapView: $mapView, address: contact.formattedAddress())
+        .frame(width: nil, height: 250.0, alignment: .center)
+      
       if self.mode?.wrappedValue == .inactive {
         List {
           FieldView(label: "First Name", value: contact.FirstName)
           FieldView(label: "Last Name", value: contact.LastName)
           FieldView(label: "Email", value: contact.Email)
-          FieldView(label: "Phone Number", value: contact.PhoneNumber)
+          FieldView(label: "Phone Number", value: contact.Phone)
           AddressView(contact: contact)
         }
       } else {
         ContactEditView(contact: $contact)
           .onDisappear{
-            print("completed contact edit")
-            let updateCancellable = RestClient.shared.updateContact(self.contact)
+            self.updateCancellable = RestClient.shared.updateContact(self.contact)
               .receive(on: RunLoop.main)
-              .map { $0 }
-              //.assign(to: \.contact, on: self)
-            print(self.contact)
-            
+              .sink { success in
+                
+            }
         }
       }
     }
+    .toast(isShowing: self.$showToast, text: Text("Files Uploaded"))
     .navigationBarItems(trailing: EditButton())
   }
 }
@@ -95,7 +129,7 @@ struct ContactDetailView_Previews: PreviewProvider {
     Id: "123456",
     FirstName: "Astro",
     LastName: "Nomical",
-    PhoneNumber: "9198675309",
+    Phone: "9198675309",
     Email: "Astro.Nomical@gmail.com",
     MailingStreet: "123 Sessame St",
     MailingCity: "Sunny Days",
@@ -104,6 +138,6 @@ struct ContactDetailView_Previews: PreviewProvider {
   )
   
   static var previews: some View {
-    ContactDetailView(contact: contact)
+    ContactDetailView(contact: $contact)
   }
 }

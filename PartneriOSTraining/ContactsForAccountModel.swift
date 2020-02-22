@@ -32,25 +32,31 @@ struct Contact :  Identifiable, Decodable {
   let Id: String?
   var FirstName: String?
   var LastName: String?
-  var PhoneNumber: String?
+  var Phone: String?
   var Email: String?
   var MailingStreet: String?
   var MailingCity: String?
   var MailingState: String?
   var MailingPostalCode: String?
+  var AccountId: String?
   
   func asDictionary() -> [String:String] {
     return [
-      "Id": self.Id!,
+      "Id": self.Id ?? "",
+      "AccountId": self.AccountId ?? "",
       "FirstName": self.FirstName ?? "",
       "LastName": self.LastName ?? "",
-      "PhoneNubmer": self.PhoneNumber ?? "",
+      "Phone": self.Phone ?? "",
       "Email": self.Email ?? "",
       "MailingStreet": self.MailingStreet ?? "",
       "MailingCity": self.MailingCity ?? "",
       "MailingState": self.MailingState ?? "",
       "MailingPostalCode": self.MailingPostalCode ?? ""
     ]
+  }
+  
+  func formattedAddress() -> String {
+    return "\(self.MailingStreet ?? "") \(self.MailingCity ?? "") \(self.MailingState ?? "")  \(self.MailingPostalCode ?? "")"
   }
 }
 
@@ -69,7 +75,7 @@ class ContactsForAccountModel: ObservableObject {
   func fetchContactsForAccount(){
     guard let acct = self.account else {return}
     
-    let request = RestClient.shared.request(forQuery: "SELECT id, firstName, lastName, phone, email, mailingStreet, mailingCity, mailingState, mailingPostalCode FROM Contact WHERE AccountID = '\(acct.id)'", apiVersion: nil)
+    let request = RestClient.shared.request(forQuery: "SELECT id, firstName, lastName, phone, email, mailingStreet, mailingCity, mailingState, mailingPostalCode, AccountId FROM Contact WHERE AccountID = '\(acct.id)'", apiVersion: nil)
     
     contactsForCancellable = RestClient.shared.publisher(for: request)
       .receive(on: RunLoop.main)
