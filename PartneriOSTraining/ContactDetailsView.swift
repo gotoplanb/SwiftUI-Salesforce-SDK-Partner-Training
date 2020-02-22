@@ -97,7 +97,7 @@ struct ContactDetailView: View {
             }
         }
       }
-      MapView(mapView: $mapView, address: contact.formattedAddress())
+      MapView(mapView: $mapView, address: contact.formattedAddress(), contactName: contact.FirstName ?? "No Name Given")
         .frame(width: nil, height: 250.0, alignment: .center)
       
       if self.mode?.wrappedValue == .inactive {

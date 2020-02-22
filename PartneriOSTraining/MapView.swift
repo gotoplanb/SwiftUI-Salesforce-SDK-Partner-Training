@@ -14,6 +14,7 @@ struct MapView: UIViewRepresentable {
   @EnvironmentObject var env: Env
   @Binding var mapView: MKMapView
   let address: String
+  let contactName: String
   
   func makeUIView(context: Context) -> MKMapView {
     mapView.delegate = context.coordinator
@@ -21,7 +22,12 @@ struct MapView: UIViewRepresentable {
   }
   
   func updateUIView(_ view: MKMapView, context: Context) {
+    let annotation = MKPointAnnotation()
+    annotation.coordinate = context.coordinator.coordiantes(from: address).coordinate
     
+    annotation.title = contactName
+    annotation.subtitle = address
+    view.addAnnotation(annotation)
   }
   
   func makeCoordinator() -> MapView.Coordinator {
@@ -62,7 +68,7 @@ struct MapView: UIViewRepresentable {
       }
     }
     
-    private func coordiantes(from address: String) -> CLLocation {
+    func coordiantes(from address: String) -> CLLocation {
       let geoCoder = CLGeocoder()
       var location: CLLocation = CLLocation()
       geoCoder.geocodeAddressString(address){ (placemarks, error) in
@@ -71,7 +77,9 @@ struct MapView: UIViewRepresentable {
           else {
             return
         }
+        
         location = firstLocation
+        self.centerMap(on: firstLocation)
       }
       return location
     }
