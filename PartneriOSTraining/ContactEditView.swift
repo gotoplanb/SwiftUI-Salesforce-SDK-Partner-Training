@@ -12,21 +12,21 @@ struct ContactEditRow: View {
   var key: String
   @Binding var value: String
   var disabled: Bool = false
-  
+
   var body: some View {
-    HStack{
+    HStack {
       Text(key).bold()
       TextField(value, text: $value).disabled(self.disabled)
     }
   }
-  
+
 }
 
 struct ContactEditView: View {
   @Binding var contact:Contact
 
   var body: some View {
-    VStack(alignment: .center, spacing: 20){
+    VStack(alignment: .center, spacing: 20) {
       ContactEditRow(key: "First Name", value: $contact.FirstName.nonOptional)
       ContactEditRow(key: "Last Name", value: $contact.LastName.nonOptional)
       ContactEditRow(key: "Phone Number", value: $contact.Phone.nonOptional)

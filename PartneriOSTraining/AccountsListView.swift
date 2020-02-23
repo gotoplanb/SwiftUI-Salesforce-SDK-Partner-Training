@@ -22,7 +22,6 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
 import Foundation
 import SwiftUI
 import Combine
@@ -31,16 +30,16 @@ import SalesforceSDKCore
 struct AccountsListView: View {
   @ObservedObject var viewModel: AccountsListModel
   @EnvironmentObject var env: Env
-  
-  init(_ viewModel: AccountsListModel = AccountsListModel()){
+
+  init(_ viewModel: AccountsListModel = AccountsListModel()) {
     self.viewModel = viewModel
   }
-  
+
   var body: some View {
     NavigationView {
-      VStack{
-        HStack{
-          VStack{
+      VStack {
+        HStack {
+          VStack {
             Text(self.env.foo)
             Button("Update SmartStore") {
               self.env.updateSoupRecord()
@@ -55,7 +54,7 @@ struct AccountsListView: View {
           }
         }.padding()
         List(viewModel.accounts) { dataItem in
-          NavigationLink(destination: ContactsForAccountListView(account: dataItem)){
+          NavigationLink(destination: ContactsForAccountListView(account: dataItem)) {
             HStack(spacing: 10) {
               VStack(alignment: .leading, spacing: 3) {
                 Text(dataItem.name)
@@ -73,7 +72,7 @@ struct AccountsListView: View {
         )
       }
     }
-    .onAppear{
+    .onAppear {
       self.viewModel.fetchAccounts()
       self.env.insertAndQuerySmartStore()
     }
@@ -90,4 +89,3 @@ struct AccountsList_Previews: PreviewProvider {
     }
   }
 }
-

@@ -10,22 +10,22 @@ import SwiftUI
 
 struct Toast<Presenting>: View where Presenting: View {
   @Binding var isShowing: Bool
-  
+
   let presenting: () -> Presenting
   let text: Text
-  
+
   var body: some View {
     if self.isShowing {
       DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-        withAnimation{
+        withAnimation {
           self.isShowing = false
         }
       }
     }
     return GeometryReader { geo in
-      ZStack(alignment: .center){
+      ZStack(alignment: .center) {
         self.presenting().blur(radius: self.isShowing ? 1 : 0)
-        VStack{
+        VStack {
           self.text
         }
         .frame(width: geo.size.width / 2, height: geo.size.height / 5)

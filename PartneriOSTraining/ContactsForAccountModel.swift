@@ -22,61 +22,24 @@
  WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 import Foundation
 import SalesforceSDKCore
 import Combine
 
-struct Contact :  Identifiable, Decodable {
-  let id: UUID = UUID()
-  let Id: String?
-  var FirstName: String?
-  var LastName: String?
-  var Phone: String?
-  var Email: String?
-  var MailingStreet: String?
-  var MailingCity: String?
-  var MailingState: String?
-  var MailingPostalCode: String?
-  var AccountId: String?
-  
-  func asDictionary() -> [String:String] {
-    return [
-      "Id": self.Id ?? "",
-      "AccountId": self.AccountId ?? "",
-      "FirstName": self.FirstName ?? "",
-      "LastName": self.LastName ?? "",
-      "Phone": self.Phone ?? "",
-      "Email": self.Email ?? "",
-      "MailingStreet": self.MailingStreet ?? "",
-      "MailingCity": self.MailingCity ?? "",
-      "MailingState": self.MailingState ?? "",
-      "MailingPostalCode": self.MailingPostalCode ?? ""
-    ]
-  }
-  
-  func formattedAddress() -> String {
-    return "\(self.MailingStreet ?? "") \(self.MailingCity ?? "") \(self.MailingState ?? "")  \(self.MailingPostalCode ?? "")"
-  }
-}
-
-struct ContactResponse: Decodable {
-  var totalSize: Int
-  var done: Bool
-  var records: [Contact]
-}
-
+/*
+ * ViewModel for the ContactsForAccounts Scene.
+ */
 class ContactsForAccountModel: ObservableObject {
   @Published var contacts: [Contact] = []
   var contactsForCancellable: AnyCancellable?
-  
+
   var account: Account?
-  
-  func fetchContactsForAccount(){
+
+  func fetchContactsForAccount() {
     guard let acct = self.account else {return}
-    
+    // // swiftlint:disable:next line_length
     let request = RestClient.shared.request(forQuery: "SELECT id, firstName, lastName, phone, email, mailingStreet, mailingCity, mailingState, mailingPostalCode, AccountId FROM Contact WHERE AccountID = '\(acct.id)'", apiVersion: nil)
-    
+
     contactsForCancellable = RestClient.shared.publisher(for: request)
       .receive(on: RunLoop.main)
       .tryMap({ (response) -> Data in
@@ -86,8 +49,8 @@ class ContactsForAccountModel: ObservableObject {
       .map({ (record) -> [Contact] in
         record.records
       })
-      .catch( { error in
-        
+      .catch({ _ in
+
         return Just([])
       })
       .assign(to: \.contacts, on:self)

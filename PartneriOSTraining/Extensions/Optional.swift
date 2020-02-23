@@ -8,7 +8,8 @@
 
 import Foundation
 extension Optional where Wrapped == String {
-  var _nonOptional: String? {
+
+  var _nonOptional: String? { //swiftlint:disable:this identifier_name
     get {
       return self
     }

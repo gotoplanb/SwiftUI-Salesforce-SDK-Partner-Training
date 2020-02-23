@@ -22,7 +22,6 @@
  WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 import Foundation
 import SwiftUI
 import Combine
@@ -33,9 +32,9 @@ import MapKit
 struct FieldView: View {
   var label: String
   var value: String?
-  
+
   var body: some View {
-    return HStack(spacing: 10){
+    return HStack(spacing: 10) {
       VStack(alignment: .leading, spacing: 3) {
         Text(value ?? "None listed")
         Text(label).font(.subheadline).italic()
@@ -46,9 +45,9 @@ struct FieldView: View {
 
 struct AddressView: View {
   var contact: Contact
-  
+
   var body: some View {
-    return HStack(spacing: 10){
+    return HStack(spacing: 10) {
       VStack(alignment: .leading, spacing: 3) {
         HStack(spacing: 10) {
           Text(contact.MailingStreet ?? "")
@@ -74,23 +73,23 @@ struct ContactDetailView: View {
   @State var mapView: MKMapView = MKMapView()
 
   var body: some View {
-    VStack(alignment: .center, spacing: 20){
-      HStack{
+    VStack(alignment: .center, spacing: 20) {
+      HStack {
         Button("Add Photo") {
           self.showingImagePicker = true
         }.padding()
       }
-      .sheet(isPresented: $showingImagePicker){
+      .sheet(isPresented: $showingImagePicker) {
         PhotosAndImagePickerView(selectedImages: self.$images)
-          .onDisappear{
-            if self.images.count > 0 {
+          .onDisappear {
+            if !self.images.isEmpty {
               let dataArray = self.images.map { img in
                 return img.resizeByQuarter().pngData()!
               }
               if let id = self.contact.Id {
                 self.attachmentCancellable = RestClient.shared.attach(files: dataArray, toRecord: id, fileType: ".png")
                   .receive(on: RunLoop.main)
-                  .sink { value in
+                  .sink { _ in
                     self.showToast = true
                 }
               }
@@ -99,7 +98,7 @@ struct ContactDetailView: View {
       }
       MapView(mapView: $mapView, address: contact.formattedAddress(), contactName: contact.FirstName ?? "No Name Given")
         .frame(width: nil, height: 250.0, alignment: .center)
-      
+
       if self.mode?.wrappedValue == .inactive {
         List {
           FieldView(label: "First Name", value: contact.FirstName)
@@ -110,11 +109,11 @@ struct ContactDetailView: View {
         }
       } else {
         ContactEditView(contact: $contact)
-          .onDisappear{
+          .onDisappear {
             self.updateCancellable = RestClient.shared.updateContact(self.contact)
               .receive(on: RunLoop.main)
-              .sink { success in
-                
+              .sink { _ in
+
             }
         }
       }
@@ -136,7 +135,7 @@ struct ContactDetailView_Previews: PreviewProvider {
     MailingState: "NJ",
     MailingPostalCode: "12345"
   )
-  
+
   static var previews: some View {
     ContactDetailView(contact: $contact)
   }

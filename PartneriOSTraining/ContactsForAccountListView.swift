@@ -22,7 +22,6 @@
  WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 import Foundation
 import SwiftUI
 import Combine
@@ -33,19 +32,19 @@ struct ContactsForAccountListView: View {
   @ObservedObject var viewModel = ContactsForAccountModel()
   @State private var isShowingScanner = false
   @State private var cancellable: AnyCancellable?
-  
+
   var account: Account
-  
+
   var body: some View {
-    VStack(alignment: .center, spacing: 20){
-      HStack{
+    VStack(alignment: .center, spacing: 20) {
+      HStack {
         Button("ScanQR Code") {
           self.isShowingScanner = true
         }.padding()
       }
       List(self.viewModel.contacts.indices, id: \.self) { index in
-        NavigationLink(destination: ContactDetailView(contact: self.$viewModel.contacts[index])){
-          HStack{
+        NavigationLink(destination: ContactDetailView(contact: self.$viewModel.contacts[index])) {
+          HStack {
             Text(self.viewModel.contacts[index].FirstName ?? "No First Name")
             Text(self.viewModel.contacts[index].LastName ?? "No Last Name")
           }
@@ -61,31 +60,34 @@ struct ContactsForAccountListView: View {
       CodeScannerView(codeTypes: [.qr], simulatedData: "Kevin Poorman\nkjp@Codefriar.com", completion: self.handleScan)
     }
   }
-  
-  func handleScan(result: Result<String, CodeScannerView.ScanError>){
+
+  func handleScan(result: Result<String, CodeScannerView.ScanError>) {
     self.isShowingScanner = false
     switch result {
-      case .success(let code):
-        let details = code.components(separatedBy: "\n")
-        guard details.count == 2 else { return }
-        let name = details[0]
-        let split = name.split(separator: " ")
-        let firstName = String(split[0])
-        let lastName = String(split[1])
-        if let accountId = self.viewModel.account?.id {
-          let contact = Contact(
-            Id: nil, FirstName: firstName, LastName: lastName, Phone: "", Email: details[1], MailingStreet: "", MailingCity: "", MailingState: "", MailingPostalCode: "", AccountId: accountId
-          )
-          cancellable = RestClient.shared.createContact(contact: contact)
-            .receive(on: RunLoop.main)
-            .sink{ result in
-              self.viewModel.contacts = [Contact]()
-              self.viewModel.fetchContactsForAccount()
-              print(result)
-          }
+    case .success(let code):
+      let details = code.components(separatedBy: "\n")
+      guard details.count == 2 else { return }
+      let name = details[0]
+      let split = name.split(separator: " ")
+      let firstName = String(split[0])
+      let lastName = String(split[1])
+      if let accountId = self.viewModel.account?.id {
+        let contact = Contact(
+          Id: nil,
+          FirstName: firstName,
+          LastName: lastName,
+          Email: details[1],
+          AccountId: accountId
+        )
+        cancellable = RestClient.shared.createContact(contact: contact)
+          .receive(on: RunLoop.main)
+          .sink { _ in
+            self.viewModel.contacts = [Contact]()
+            self.viewModel.fetchContactsForAccount()
         }
-      case .failure(let error):
-        print("Scanning failed", error)
+      }
+    case .failure(let error):
+      print("Scanning failed", error)
     }
   }
 }

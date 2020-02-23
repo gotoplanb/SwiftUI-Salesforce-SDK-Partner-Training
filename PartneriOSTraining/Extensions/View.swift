@@ -10,9 +10,9 @@ import Foundation
 import SwiftUI
 
 extension View {
-  
+
   func toast(isShowing: Binding<Bool>, text: Text) -> some View {
     Toast(isShowing: isShowing, presenting: { self }, text: text)
   }
-  
+
 }
