@@ -26,6 +26,9 @@ class Env: ObservableObject {
   private var cancellable: AnyCancellable?
   private var pipeline: AnyPublisher<Bool, Error>?
 
+  /*
+   * These methods help illustrate how to interact with SmartStore
+   */
   public func insertAndQuerySmartStore() {
     guard customSoup != nil else {return}
     customOfflineStore?.clearSoup(soupName)
@@ -66,6 +69,9 @@ class Env: ObservableObject {
     self.foo = self.queryResults["foo"] as? String ?? ""
   }
 
+  /*
+   * Demonstrate how to sequence api calls
+   */
   public func chainedApiCalls() {
     if self.cancellable != nil {
       cancellable?.cancel()
@@ -82,9 +88,11 @@ class Env: ObservableObject {
     }
   }
 
+  /*
+   * Demonstrates how to make an api call to a third party (non Salesforce) service
+   */
   public func dataTaskPublisherDemo() {
     let url = URL(string: "https://api.github.com/users/codefriar/repos")!
-
     if self.cancellable != nil {
       self.cancellable?.cancel()
     }

@@ -13,6 +13,9 @@ import Combine
 extension RestClient {
   static let apiVersion = "v48.0"
 
+  /*
+   * These typealias' make it easier to reason about what's what in our pipelines
+   */
   typealias JSONKeyValuePairs = [String:Any]
   typealias SalesforceRecord = [String:Any]
   typealias SalesforceRecords = [SalesforceRecord]

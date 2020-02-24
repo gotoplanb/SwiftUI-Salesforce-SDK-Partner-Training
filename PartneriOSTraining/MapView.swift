@@ -23,7 +23,7 @@ struct MapView: UIViewRepresentable {
 
   func updateUIView(_ view: MKMapView, context: Context) {
     let annotation = MKPointAnnotation()
-    annotation.coordinate = context.coordinator.coordiantes(from: address).coordinate
+    annotation.coordinate = context.coordinator.coordinates(from: address).coordinate
 
     annotation.title = contactName
     annotation.subtitle = address
@@ -48,7 +48,7 @@ struct MapView: UIViewRepresentable {
       locationManager.desiredAccuracy = kCLLocationAccuracyBest
 
       if checkLocationAuthorizationStatus() == true {
-        centerMap(on: coordiantes(from: self.parent.address))
+        centerMap(on: coordinates(from: self.parent.address))
       }
 
       mkMapView.mapType = .standard
@@ -68,7 +68,7 @@ struct MapView: UIViewRepresentable {
       }
     }
 
-    func coordiantes(from address: String) -> CLLocation {
+    func coordinates(from address: String) -> CLLocation {
       let geoCoder = CLGeocoder()
       var location: CLLocation = CLLocation()
       geoCoder.geocodeAddressString(address) { (placemarks, _) in
