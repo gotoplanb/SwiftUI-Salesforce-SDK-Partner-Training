@@ -7,7 +7,8 @@
 //
 
 import Foundation
-
+import Combine
+import SalesforceSDKCore
 /*
  * Data Model for Contact.
  * Note that the field names specifically match the response from Salesforce
@@ -44,6 +45,10 @@ struct Contact :  Identifiable, Decodable {
 
   func formattedAddress() -> String {
     return "\(self.MailingStreet ?? "") \(self.MailingCity ?? "") \(self.MailingState ?? "")  \(self.MailingPostalCode ?? "")"
+  }
+
+  func updateSalesforce() -> AnyPublisher<Bool, Never> {
+    RestClient.shared.updateContact(self)
   }
 }
 
