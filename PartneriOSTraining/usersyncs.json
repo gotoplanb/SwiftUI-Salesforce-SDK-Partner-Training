@@ -1,18 +1,82 @@
 {
-  "syncs": [
-    {
-      "syncName": "syncDownAccounts",
-      "syncType": "syncDown",
-      "soupName": "Account",
-      "target": {
-        "type": "soql",
-        "query":"SELECT Id, Name, phone, fax, website, type, industry, numberOfEmployees, annualRevenue, description, billingStreet, billingCity, billingState, billingPostalCode, billingCountry, shippingStreet, shippingCity, shippingState, shippingPostalCode, shippingCountry FROM Account"
+  "syncs": [{
+    "syncName": "syncDownAccounts",
+    "syncType": "syncDown",
+    "soupName": "AccountSoup",
+    "target": {
+      "iOSImpl": "SFParentChildrenSyncDownTarget",
+      "parent": {
+        "idFieldName": "Id",
+        "sobjectType": "Account",
+        "modificationDateFieldName": "LastModifiedDate",
+        "soupName": "AccountSoup"
       },
-      "options": {
-        "fieldlist":["Id", "Name", "phone", "fax", "website", "type", "industry", "numberOfEmployees", "annualRevenue", "description", "billingStreet", "billingCity", "billingState", "billingPostalCode", "billingCountry", "shippingStreet", "shippingCity", "shippingState", "shippingPostalCode", "shippingCountry"],
-        "mergeMode":"LEAVE_IF_CHANGED"
-      }
-    }
+      "parentFieldlist": [
+        "Id", "Name", "phone", "fax", "website", "type", "industry", "numberOfEmployees", "annualRevenue", "description", "billingStreet", "billingCity", "billingState", "billingPostalCode", "billingCountry", "shippingStreet", "shippingCity", "shippingState", "shippingPostalCode", "shippingCountry"
+      ],
+      "children": {
+        "parentIdFieldName": "AccountId",
+        "idFieldName": "Id",
+        "sobjectType": "Contact",
+        "modificationDateFieldName": "LastModifiedDate",
+        "soupName": "ContactSoup",
+        "sobjectTypePlural": "Contacts"
+      },
+      "childrenFieldlist": [
+        "LastName", "AccountId", "FirstName", "Phone", "Email", "MailingStreet", "MailingCity", "MailingState", "MailingPostalCode"
+      ],
+      "relationshipType": "MASTER_DETAIL",
+      "type": "parent_children",
+      "idFieldName": "Id"
+    },
+    "options": {"mergeMode": "OVERWRITE"}
+  },
+  
+  {
+    "syncName": "UpSync",
+    "syncType": "syncUp",
+    "soupName": "AccountSoup",
+    "target": {
+      "iOSImpl": "SFParentChildrenSyncUpTarget",
+      "childrenCreateFieldlist": [
+        "LastName", "AccountId", "FirstName", "Phone", "Email", "MailingStreet", "MailingCity", "MailingState", "MailingPostalCode"
+      ],
+      "childrenFieldList": [
+        "LastName", "AccountId", "FirstName", "Phone", "Email", "MailingStreet", "MailingCity", "MailingState", "MailingPostalCode"
+      ],
+      "createFieldlist": [
+        "Id", "Name", "phone", "fax", "website", "type", "industry", "numberOfEmployees", "annualRevenue", "description", "billingStreet", "billingCity", "billingState", "billingPostalCode", "billingCountry", "shippingStreet", "shippingCity", "shippingState", "shippingPostalCode", "shippingCountry"
+      ],
+      "childrenUpdateFieldlist": [
+        "LastName", "AccountId", "FirstName", "Phone", "Email", "MailingStreet", "MailingCity", "MailingState", "MailingPostalCode"
+      ],
+      "updateFieldlist": [
+        "Id", "Name", "phone", "fax", "website", "type", "industry", "numberOfEmployees", "annualRevenue", "description", "billingStreet", "billingCity", "billingState", "billingPostalCode", "billingCountry", "shippingStreet", "shippingCity", "shippingState", "shippingPostalCode", "shippingCountry"
+      ],
+      "parent": {
+        "idFieldName": "Id",
+        "sobjectType": "Account",
+        "modificationDateFieldName": "LastModifiedDate",
+        "soupName": "AccountSoup"
+      },
+      "relationshipType": "MASTER_DETAIL",
+      "type": "rest",
+      "modificationDateFieldName": "LastModifiedDate",
+      "children": {
+        "parentIdFieldName": "AccountId",
+        "idFieldName": "Id",
+        "sobjectType": "Contact",
+        "modificationDateFieldName": "LastModifiedDate",
+        "soupName": "ContactSoup",
+        "sobjectTypePlural": "Contacts"
+      },
+      "parentUpdateFieldlist": [
+        "Name",
+        "Description"
+      ],
+      "idFieldName": "Id"
+    },
+    "options": {"mergeMode":"LEAVE_IF_CHANGED"}
+  }
   ]
 }
-

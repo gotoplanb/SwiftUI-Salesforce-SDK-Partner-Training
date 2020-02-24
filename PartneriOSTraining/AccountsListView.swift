@@ -22,7 +22,6 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
 import Foundation
 import SwiftUI
 import Combine
@@ -30,32 +29,53 @@ import SalesforceSDKCore
 
 struct AccountsListView: View {
   @ObservedObject var viewModel: AccountsListModel
-  
-  init(_ viewModel: AccountsListModel = AccountsListModel()){
+  @EnvironmentObject var env: Env
+
+  init(_ viewModel: AccountsListModel = AccountsListModel()) {
     self.viewModel = viewModel
   }
-  
+
   var body: some View {
     NavigationView {
-      List(viewModel.accounts) { dataItem in
-        NavigationLink(destination: ContactsForAccountListView(account: dataItem)){
-          HStack(spacing: 10) {
-            VStack(alignment: .leading, spacing: 3) {
-              Text(dataItem.name)
-              Text(dataItem.industry).font(.subheadline).italic()
+      VStack {
+        HStack {
+          VStack {
+            Text(self.env.foo)
+            Button("Update SmartStore") {
+              self.env.updateSoupRecord()
+            }
+          }
+          Spacer()
+          Button("Sequence") {
+            self.env.chainedApiCalls()
+          }
+          Button("DTP") {
+            self.env.dataTaskPublisherDemo()
+          }
+        }.padding()
+        List(viewModel.accounts) { dataItem in
+          NavigationLink(destination: ContactsForAccountListView(account: dataItem)) {
+            HStack(spacing: 10) {
+              VStack(alignment: .leading, spacing: 3) {
+                Text(dataItem.name)
+                Text(dataItem.industry).font(.subheadline).italic()
+              }
             }
           }
         }
+        .navigationBarTitle(Text("My Accounts"), displayMode: .inline)
+        .navigationBarItems(
+          leading: Button("Logout") {
+            self.viewModel.accounts = []
+            UserAccountManager.shared.logout()
+          }
+        )
       }
-      .navigationBarTitle(Text("My Accounts"), displayMode: .inline)
-      .navigationBarItems(
-        leading: Button("Logout") {
-          self.viewModel.accounts = []
-          UserAccountManager.shared.logout()
-        }
-      )
     }
-    .onAppear{ self.viewModel.fetchAccounts() }
+    .onAppear {
+      self.viewModel.fetchAccounts()
+      self.env.insertAndQuerySmartStore()
+    }
   }
 }
 
@@ -69,4 +89,3 @@ struct AccountsList_Previews: PreviewProvider {
     }
   }
 }
-
