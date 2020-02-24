@@ -22,16 +22,11 @@ struct MapView: UIViewRepresentable {
   }
 
   func updateUIView(_ view: MKMapView, context: Context) {
-    let annotation = MKPointAnnotation()
-    annotation.coordinate = context.coordinator.coordinates(from: address).coordinate
 
-    annotation.title = contactName
-    annotation.subtitle = address
-    view.addAnnotation(annotation)
   }
 
   func makeCoordinator() -> MapView.Coordinator {
-    Coordinator(self)
+    Coordinator(self, contactName: contactName)
   }
 
   class Coordinator: NSObject, MKMapViewDelegate {
@@ -39,9 +34,11 @@ struct MapView: UIViewRepresentable {
     let locationManager = CLLocationManager()
     var mkMapView: MKMapView!
     let regionRadius = 150.0
+    let contactName: String
 
-    init(_ parent: MapView) {
+    init(_ parent: MapView, contactName:String) {
       self.parent = parent
+      self.contactName = contactName
       self.mkMapView = self.parent.mapView
       super.init()
 
@@ -80,6 +77,11 @@ struct MapView: UIViewRepresentable {
 
         location = firstLocation
         self.centerMap(on: firstLocation)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = firstLocation.coordinate
+        annotation.title = self.contactName
+        annotation.subtitle = address
+        self.mkMapView.addAnnotation(annotation)
       }
       return location
     }
