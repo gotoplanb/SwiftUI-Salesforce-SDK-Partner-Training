@@ -27,36 +27,17 @@ import SmartStore
 import MobileSync
 
 /**
- Model object for a single Account
- */
-struct Account: Hashable, Identifiable, Decodable {
-  let id: String
-  let name: String
-  let industry: String
-  
-  static func generateDemoAccounts(numberOfAccounts: Int) -> [Account] {
-    var accounts = [Account]()
-    for idx in 1...numberOfAccounts{
-      accounts.append(
-        Account(id: "PRE1234\(idx)", name: "Demo Account - \(idx)", industry: "Industry - \(idx)")
-      )
-    }
-    return accounts
-  }
-}
-
-/**
  ViewModel for Account List
  */
 class AccountsListModel: ObservableObject {
-  
+
   @Published var accounts: [Account] = []
-  
+
   var fetchAccountsCancellable: AnyCancellable?
   var store: SmartStore?
   var syncManager: SyncManager?
   var preview: Bool?
-  
+
   init(_ preview: Bool = false) {
     if !preview {
       self.preview = preview
@@ -64,24 +45,33 @@ class AccountsListModel: ObservableObject {
       syncManager = SyncManager.sharedInstance(store: store!)
     }
   }
-  
-  func fetchAccounts(){
-    _ = syncManager?.publisher(for: "syncDownAccounts")
+
+  func fetchAccounts() {
+    fetchAccountsCancellable = syncManager?.publisher(for: "syncDownAccounts")
       .receive(on: RunLoop.main)
       .sink(receiveCompletion: { _ in }, receiveValue: { _ in
         self.loadFromSmartStore()
       })
-    
-    self.loadFromSmartStore()
   }
-  
-  private func loadFromSmartStore(){
-    fetchAccountsCancellable = self.store?.publisher(for: "select {Account:Name}, {Account:Phone}, {Account:Industry}, {Account:Id} from {Account}")
+
+  func syncUpAccounts() {
+    fetchAccountsCancellable = syncManager?.publisher(for: "UpSync")
       .receive(on: RunLoop.main)
-      .tryMap{
+      .print()
+      .sink(receiveCompletion: { _ in }, receiveValue: { value in
+        print(value)
+      })
+  }
+
+  private func loadFromSmartStore() {
+    // swiftlint:disable:next line_length
+    fetchAccountsCancellable = self.store?.publisher(for: "select {AccountSoup:Name}, {AccountSoup:Phone}, {AccountSoup:Industry}, {AccountSoup:Id} from {AccountSoup}")
+      .receive(on: RunLoop.main)
+      .tryMap {
         $0.map { (row) -> Account in
-          let r = row as! [String?]
-          return Account(id: r[3] ?? "", name: r[0] ?? "", industry: r[2] ?? "Unknown Industry" )
+          //swiftlint:disable:next force_cast
+          let thisRow = row as! [String?]
+          return Account(id: thisRow[3] ?? "", name: thisRow[0] ?? "", industry: thisRow[2] ?? "Unknown Industry" )
         }
     }
     .catch { error -> Just<[Account]> in
@@ -90,5 +80,5 @@ class AccountsListModel: ObservableObject {
     }
     .assign(to: \AccountsListModel.accounts, on:self)
   }
-  
+
 }

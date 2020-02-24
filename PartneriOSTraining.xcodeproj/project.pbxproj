@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,20 @@
 		4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */; };
 		4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C49D1B755242002F9F90 /* InitialViewController.swift */; };
 		78A235BD93AB7D080D67CD51 /* Pods_PartneriOSTraining.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A29C75280BDF73123F14B4 /* Pods_PartneriOSTraining.framework */; };
+		B505BB8823FE3B5000218AD4 /* ContactEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB8723FE3B5000218AD4 /* ContactEditView.swift */; };
+		B505BB8B23FF278000218AD4 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB8A23FF278000218AD4 /* Optional.swift */; };
+		B505BB8D23FF372E00218AD4 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB8C23FF372E00218AD4 /* RestClient.swift */; };
+		B505BB95240034EE00218AD4 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB94240034EE00218AD4 /* UIImage.swift */; };
+		B505BB972400366600218AD4 /* PhotosAndImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB962400366500218AD4 /* PhotosAndImagePickerView.swift */; };
+		B505BB992400614F00218AD4 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB982400614F00218AD4 /* Toast.swift */; };
+		B505BB9B240063AB00218AD4 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505BB9A240063AB00218AD4 /* View.swift */; };
+		B505BB9E24006DE400218AD4 /* Tatsi in Frameworks */ = {isa = PBXBuildFile; productRef = B505BB9D24006DE400218AD4 /* Tatsi */; };
+		B505BBA12400F48900218AD4 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = B505BBA02400F48900218AD4 /* CodeScanner */; };
+		B507DC2B240100D200DC04E4 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507DC2A240100D200DC04E4 /* MapView.swift */; };
+		B510CAB72402BD5B00B23F9A /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B510CAB62402BD5B00B23F9A /* Contact.swift */; };
+		B510CAB92402BEDA00B23F9A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = B510CAB82402BEDA00B23F9A /* Account.swift */; };
+		B510CABC2402C8BA00B23F9A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B510CABB2402C8BA00B23F9A /* Repository.swift */; };
+		B573120223FD80DC006DF5C1 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = B573120123FD80DC006DF5C1 /* Env.swift */; };
 		B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */; };
 		B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73B520C234FA65F001B069B /* SceneDelegate.swift */; };
 		B77BD8A321125B510036B284 /* bootconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B77BD8A221125B510036B284 /* bootconfig.plist */; };
@@ -43,6 +57,18 @@
 		4FF12F8A1DCA91F5004D9EF9 /* PartneriOSTraining.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PartneriOSTraining.entitlements; sourceTree = "<group>"; };
 		762732C14CFE40A989C3AD70 /* Pods-PartneriOSTraining.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PartneriOSTraining.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PartneriOSTraining/Pods-PartneriOSTraining.debug.xcconfig"; sourceTree = "<group>"; };
 		82A29C75280BDF73123F14B4 /* Pods_PartneriOSTraining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PartneriOSTraining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B505BB8723FE3B5000218AD4 /* ContactEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactEditView.swift; sourceTree = "<group>"; };
+		B505BB8A23FF278000218AD4 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
+		B505BB8C23FF372E00218AD4 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
+		B505BB94240034EE00218AD4 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		B505BB962400366500218AD4 /* PhotosAndImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosAndImagePickerView.swift; sourceTree = "<group>"; };
+		B505BB982400614F00218AD4 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		B505BB9A240063AB00218AD4 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		B507DC2A240100D200DC04E4 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		B510CAB62402BD5B00B23F9A /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		B510CAB82402BEDA00B23F9A /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		B510CABB2402C8BA00B23F9A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		B573120123FD80DC006DF5C1 /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		B73B520C234FA65F001B069B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B77BD8A221125B510036B284 /* bootconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bootconfig.plist; sourceTree = "<group>"; };
@@ -54,7 +80,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B505BB9E24006DE400218AD4 /* Tatsi in Frameworks */,
 				78A235BD93AB7D080D67CD51 /* Pods_PartneriOSTraining.framework in Frameworks */,
+				B505BBA12400F48900218AD4 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +96,10 @@
 				4F13E939237DD5D9005BCAE9 /* AccountsListView.swift */,
 				4F13E938237DD5D9005BCAE9 /* ContactsForAccountListView.swift */,
 				4F13E936237DD5D9005BCAE9 /* ContactDetailsView.swift */,
+				B505BB8723FE3B5000218AD4 /* ContactEditView.swift */,
+				B505BB962400366500218AD4 /* PhotosAndImagePickerView.swift */,
+				B505BB982400614F00218AD4 /* Toast.swift */,
+				B507DC2A240100D200DC04E4 /* MapView.swift */,
 			);
 			name = SwiftUI;
 			sourceTree = "<group>";
@@ -78,6 +110,9 @@
 				4F13E946237DD72E005BCAE9 /* AccountsListModel.swift */,
 				4F13E937237DD5D9005BCAE9 /* ContactsForAccountModel.swift */,
 				4F13E93A237DD5D9005BCAE9 /* ContactDetailModel.swift */,
+				B510CAB62402BD5B00B23F9A /* Contact.swift */,
+				B510CAB82402BEDA00B23F9A /* Account.swift */,
+				B510CABB2402C8BA00B23F9A /* Repository.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -103,6 +138,7 @@
 		4FD6C4761B754AF1002F9F90 /* PartneriOSTraining */ = {
 			isa = PBXGroup;
 			children = (
+				B505BB8923FF276B00218AD4 /* Extensions */,
 				4FF12F8A1DCA91F5004D9EF9 /* PartneriOSTraining.entitlements */,
 				4FD6C4A11B755265002F9F90 /* Classes */,
 				4FD6C4771B754AF1002F9F90 /* Supporting Files */,
@@ -131,6 +167,7 @@
 				4FD6C49D1B755242002F9F90 /* InitialViewController.swift */,
 				4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */,
 				4F393A281C3C8BCD00B3EA13 /* main.swift */,
+				B573120123FD80DC006DF5C1 /* Env.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -141,6 +178,17 @@
 				82A29C75280BDF73123F14B4 /* Pods_PartneriOSTraining.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B505BB8923FF276B00218AD4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B505BB8A23FF278000218AD4 /* Optional.swift */,
+				B505BB8C23FF372E00218AD4 /* RestClient.swift */,
+				B505BB94240034EE00218AD4 /* UIImage.swift */,
+				B505BB9A240063AB00218AD4 /* View.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		DDFDDF0A29E4BDD114B51BBC /* Pods */ = {
@@ -164,12 +212,17 @@
 				4FD6C4711B754AF1002F9F90 /* Frameworks */,
 				4FD6C4721B754AF1002F9F90 /* Resources */,
 				7056FC8D1D194E5113988767 /* [CP] Embed Pods Frameworks */,
+				B510CABA2402BFC500B23F9A /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = PartneriOSTraining;
+			packageProductDependencies = (
+				B505BB9D24006DE400218AD4 /* Tatsi */,
+				B505BBA02400F48900218AD4 /* CodeScanner */,
+			);
 			productName = PartneriOSTraining;
 			productReference = 4FD6C4741B754AF1002F9F90 /* PartneriOSTraining.app */;
 			productType = "com.apple.product-type.application";
@@ -204,6 +257,10 @@
 				Base,
 			);
 			mainGroup = 4FD6C46B1B754AF1002F9F90;
+			packageReferences = (
+				B505BB9C24006DE400218AD4 /* XCRemoteSwiftPackageReference "Tatsi" */,
+				B505BB9F2400F48900218AD4 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+			);
 			productRefGroup = 4FD6C4751B754AF1002F9F90 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -246,6 +303,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PartneriOSTraining/Pods-PartneriOSTraining-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B510CABA2402BFC500B23F9A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		FF74F0F7AF3E58C14EBE5178 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -273,14 +347,26 @@
 			files = (
 				B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */,
 				4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */,
+				B505BB992400614F00218AD4 /* Toast.swift in Sources */,
 				4F13E93B237DD5D9005BCAE9 /* ContactDetailsView.swift in Sources */,
+				B505BB8B23FF278000218AD4 /* Optional.swift in Sources */,
+				B510CABC2402C8BA00B23F9A /* Repository.swift in Sources */,
 				4F13E947237DD72E005BCAE9 /* AccountsListModel.swift in Sources */,
+				B505BB972400366600218AD4 /* PhotosAndImagePickerView.swift in Sources */,
 				4F13E93C237DD5D9005BCAE9 /* ContactsForAccountModel.swift in Sources */,
+				B505BB95240034EE00218AD4 /* UIImage.swift in Sources */,
 				4F13E93F237DD5D9005BCAE9 /* ContactDetailModel.swift in Sources */,
 				4F13E93D237DD5D9005BCAE9 /* ContactsForAccountListView.swift in Sources */,
 				4F13E93E237DD5D9005BCAE9 /* AccountsListView.swift in Sources */,
+				B510CAB72402BD5B00B23F9A /* Contact.swift in Sources */,
 				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,
+				B505BB8823FE3B5000218AD4 /* ContactEditView.swift in Sources */,
+				B505BB9B240063AB00218AD4 /* View.swift in Sources */,
+				B507DC2B240100D200DC04E4 /* MapView.swift in Sources */,
 				4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */,
+				B505BB8D23FF372E00218AD4 /* RestClient.swift in Sources */,
+				B573120223FD80DC006DF5C1 /* Env.swift in Sources */,
+				B510CAB92402BEDA00B23F9A /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +542,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B505BB9C24006DE400218AD4 /* XCRemoteSwiftPackageReference "Tatsi" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/awkward/Tatsi.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.9;
+			};
+		};
+		B505BB9F2400F48900218AD4 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B505BB9D24006DE400218AD4 /* Tatsi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B505BB9C24006DE400218AD4 /* XCRemoteSwiftPackageReference "Tatsi" */;
+			productName = Tatsi;
+		};
+		B505BBA02400F48900218AD4 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B505BB9F2400F48900218AD4 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4FD6C46C1B754AF1002F9F90 /* Project object */;
 }
