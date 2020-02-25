@@ -40,19 +40,24 @@ class ContactsForAccountModel: ObservableObject {
     // // swiftlint:disable:next line_length
     let request = RestClient.shared.request(forQuery: "SELECT id, firstName, lastName, phone, email, mailingStreet, mailingCity, mailingState, mailingPostalCode, AccountId FROM Contact WHERE AccountID = '\(acct.id)'", apiVersion: nil)
 
-    contactsForCancellable = RestClient.shared.publisher(for: request)
+    let contactsForCancellable1 = RestClient.shared.records<Contact>(forRequest: request)
       .receive(on: RunLoop.main)
-      .tryMap({ (response) -> Data in
-        response.asData()
-      })
-      .decode(type: ContactResponse.self, decoder: JSONDecoder())
-      .map({ (record) -> [Contact] in
-        record.records
-      })
-      .catch({ _ in
+      .assign(to: \.contacts, on: self)
 
-        return Just([])
-      })
-      .assign(to: \.contacts, on:self)
+
+//      RestClient.shared.publisher(for: request)
+//      .receive(on: RunLoop.main)
+//      .tryMap({ (response) -> Data in
+//        response.asData()
+//      })
+//      .decode(type: SFResponse<Contact>.self, decoder: JSONDecoder())
+//      .map({ (record) -> [Contact] in
+//        record.records
+//      })
+//      .catch({ _ in
+//
+//        return Just([])
+//      })
+//      .assign(to: \.contacts, on:self)
   }
 }

@@ -20,6 +20,26 @@ extension RestClient {
   typealias SalesforceRecord = [String:Any]
   typealias SalesforceRecords = [SalesforceRecord]
 
+  func records<Record: Decodable>(forRequest request:RestRequest ) -> AnyPublisher<[Record], Never> {
+    return RestClient.shared.publisher(for: request)
+      .tryMap({ (response) -> Data in
+        response.asData()
+      })
+      .decode(type: SFResponse<Record>.self, decoder: JSONDecoder())
+      .map({ (record) -> [Record] in
+        record.records
+      })
+      .catch({ _ in
+        Just([Record]())
+      })
+      .eraseToAnyPublisher()
+  }
+
+  func records<Record: Decodable>(forQuery query:String) -> AnyPublisher<[Record], Never> {
+    let request = RestClient.shared.request(forQuery: query, apiVersion: RestClient.apiVersion)
+    return self.records(forRequest: request)
+  }
+
   func updateContact(_ contact: Contact) -> AnyPublisher<Bool, Never> {
     return self.updateRecord(withObjectType: "Contact", fields: contact.asDictionary())
   }
