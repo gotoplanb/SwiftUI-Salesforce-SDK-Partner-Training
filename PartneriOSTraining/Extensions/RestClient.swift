@@ -44,7 +44,6 @@ extension RestClient {
       )
     }
     let compositeRequest = compositeRequestBuilder.buildCompositeRequest(RestClient.apiVersion)
-    print("Halting for composite Requests")
     return self.publisher(for: compositeRequest)
       .map { $0.subResponses }
       .map { return $0.map { subResponse in return subResponse.httpStatusCode} }
@@ -75,7 +74,6 @@ extension RestClient {
 
   private func createReturningId(request: RestRequest) -> AnyPublisher<String?, Never> {
     return self.publisher(for: request)
-      .print("Create Account")
       .tryMap { try $0.asJson() as? RestClient.JSONKeyValuePairs ?? [:]}
       .tryMap { keyValuePairs in
         guard let id = keyValuePairs["id"] as? String else {return ""}
