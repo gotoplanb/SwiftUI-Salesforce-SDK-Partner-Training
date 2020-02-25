@@ -66,6 +66,17 @@ class AccountsListModel: ObservableObject {
   private func loadFromSmartStore() {
     // swiftlint:disable:next line_length
     fetchAccountsCancellable = self.store?.publisher(for: "select {AccountSoup:Name}, {AccountSoup:Phone}, {AccountSoup:Industry}, {AccountSoup:Id} from {AccountSoup}")
+      .handleEvents(receiveSubscription: { aValue in
+        print("receiveSubscription event called with \(String(describing: aValue))")
+      }, receiveOutput: { aValue in
+        print("receiveOutput was invoked with \(String(describing: aValue))")
+      }, receiveCompletion: { aValue in
+        print("receiveCompletion event called with \(String(describing: aValue))")
+      }, receiveCancel: {
+        print("receiveCancel event invoked")
+      }, receiveRequest: { aValue in
+        print("receiveRequest event called with \(String(describing: aValue))")
+      })
       .receive(on: RunLoop.main)
       .tryMap {
         $0.map { (row) -> Account in
